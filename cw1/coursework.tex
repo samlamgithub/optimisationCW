@@ -31,24 +31,49 @@ To prove is $\log \sum_{k=1}^{10} exp(B_{jk})$ is convex, we define:
 f(B_j) = \log \sum_{k=1}^{10} exp(B_{jk})\\
 f(x) = \log \sum_{k=1}^{10} exp(x_k)
 \end{align}
-First we need to compute the hessian of $f(x)$:
+First we need to compute the Hessian of $f(x)$:
 \begin{align}
 \nabla f(x) = \frac{1}{1\T Z} \times z\\
-\nabla^2 f(x) = \frac{1}{1\T Z} \times diag(Z) - \frac{Z\T Z}{{1\T Z}^2}\\
+\nabla^2 f(x) = \frac{1}{1\T Z} \times diag(Z) - \frac{Z\T Z}{{(1\T Z)}^2}\\
 where\quad Z = \sum_{k=1}^{10} exp(x_{k})
 \end{align}
-To prove the hessian is positive semi-definite, we need to prove:
+For convexity we need to prove the Hessian is positive semi-definite, we need to prove:
 \begin{align}
+\nabla^2 f(x) \succeq 0\\
 v\T\nabla^2 f(x)v >= 0\\
-v\T\left(\frac{1}{1\T Z} \times diag(Z) - \frac{Z\T Z}{{1\T Z}^2}\right)v >= 0
+v\T\left(\frac{1}{1\T Z} \times diag(Z) - \frac{Z\T Z}{{(1\T Z)}^2}\right)v >= 0\\
+\frac{(\sum_{k=1}^{10} Z_k V_k^2) \sum_{k=1}^{10}Z_k - \sum_{k=1}^{10}(Z_k v_k)^2}{(1\T Z)^2} >=0
 \end{align}
-Cauchy-Schwarz inequality
+According to Cauchy-Schwartz inequality:
+\begin{align}
+\sum_{k=1}^{10}(Z_k v_k)^2 \leq \sum_{k=1}^{10}Z_k \times \sum_{k=1}^{10} (Z_k V_k^2)
+\end{align}
+There for the Hessian is positive semi-definite holds, the Log-Sum-Exp function is convex.
 \item
-
-
-\item
-
-
+Denote affine mapping on $\beta_k$ as $g(\beta_k)$:
+\begin{align}
+g(\beta_k) = x_i\T\beta_k
+\end{align}
+And denote Log-Sum-Exp function as $f(x_k)$:
+\begin{align}
+f(x_k) = \log \sum_{k=1}^{10} exp(x_{k})
+\end{align}
+Now we know that $f(x_k)$ is convex, and we want to prove that $f \circ g$ is convex as well, from the definition of convexity, we need to prove:
+\begin{align}
+f \circ g(\alpha x + (1-\alpha)y) \leq \alpha f \circ g(x) + (1-\alpha)f \circ g(y)\\
+for \quad any \quad x,\quad y \quad and\quad  \alpha \in [0,1]
+\end{align}
+Since we know:
+\begin{align}
+g(\alpha x + (1-\alpha)y) = \alpha g(x) + (1-\alpha)g(y)
+\end{align}
+We can prove that:
+\begin{align}
+f \circ g(\alpha x + (1-\alpha)y) = f ( g(\alpha x + (1-\alpha)y))\\
+= f ( \alpha g(x) + (1-\alpha)g(y))\\
+\leq \alpha f \circ g(x) + (1-\alpha)f \circ g(y)
+\end{align}
+Now we know that $\log \sum_{k=1}^{10} exp(x_i\T \beta_k)$ is convex as well.
 \item
 
 

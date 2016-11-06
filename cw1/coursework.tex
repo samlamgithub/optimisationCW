@@ -138,8 +138,14 @@ Combining the convex first term and convex second term, the whole  optimisation 
 \subsection{Q.2}
 \begin{enumerate}[1)]
 \item
-
+\begin{align}
+h(B) = \lambda\sum_{k=1}^{10}||\beta_k||_1\\
+= \lambda\sum_{k=1}^{10}\sum_{i=1}^{n}|\beta_{ik}|
+\end{align}
+Since absolute value is not differentiable because it has a kink at 0, the whole $h(\mathcal{B})$ function is not differentiable. So $h(\mathcal{B}) \not\in \mathcal{C}^1$.
 \item
+
+
 
 \item
 

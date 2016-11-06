@@ -75,8 +75,34 @@ f \circ g(\alpha x + (1-\alpha)y) = f ( g(\alpha x + (1-\alpha)y))\\
 \end{align}
 Now we know that $\log \sum_{k=1}^{10} exp(x_i\T \beta_k)$ is convex as well.
 \item
+Define function $f(\beta_y)$:
+\begin{align}
+f(\beta_{y_i}) = -x_i\T \beta_{y_i+1}
+\end{align}
+We can show that:
+\begin{align}
+f(\alpha\beta_{x_i+1} + (1-\alpha)\beta_{y_i+1}) = -x_i\T (\alpha\beta_{x_i+1} + (1-\alpha)\beta_{y_i}+1) \\
+= -\alpha x_i\T \beta_{x_i+1} - (1-\alpha)x_i\T\beta_{y_i+1}\\
+= \alpha f(\beta_{x_i+1}) + (1-\alpha )f(\beta_{y_i+1})
+\end{align}
+Therefore $f(\beta_y)$ is convex.
+\item
+We can define a function for $\ell$1 Regularisation $||\beta_k||_1$:
+\begin{align}
+||\beta_k||_1 = f(\beta_k) = \sum_{i=1}^{N} |\beta_{ki}|
+\end{align}
+To prove the convexity of $f(\beta_k)$, we can show that:
+\begin{align}
+f(\alpha\beta_k + (1-\alpha)\beta_j) = \sum_{i=1}^{N} |\alpha\beta_k + (1-\alpha)\beta_j|\\
+= \alpha\sum_{i=1}^{N} |\beta_{ki}|+ (1-\alpha)\sum_{i=1}^{N}|\beta_{ji}|\\
+= \alpha f(\beta_{k})+(1-\alpha)f(\beta_{j})
+\end{align}
+Therefore $f(\beta_k)$ is convex.
 
+\item
+\begin{align}
 
+\end{align}
 
 \end{enumerate}
 

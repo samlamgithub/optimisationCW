@@ -21,7 +21,7 @@
 \section{Part 1}
 
 
-\subsection{1}
+\subsection{Q.1}
 
 
 \begin{enumerate}[1)]
@@ -100,15 +100,58 @@ f(\alpha\beta_k + (1-\alpha)\beta_j) = \sum_{i=1}^{N} |\alpha\beta_k + (1-\alpha
 Therefore $f(\beta_k)$ is convex.
 
 \item
+To prove the following function is convex:
 \begin{align}
-
+\sum_{i=1}^{m}\left(\log \sum_{k=1}^{10} exp(x_i\T \beta_k)-x_i\T \beta_{y_i+1}\right) + \lambda\sum_{k=1}^{10}||\beta_k||_1
 \end{align}
-
+We need to prove by decomposition, in Q2, we have shown the following term to be convex:
+\begin{align}
+\log \sum_{k=1}^{10} exp(x_i\T \beta_k)
+\end{align}
+and in Q3, we have shown the following term is convex:
+\begin{align}
+-x_i\T \beta_{y_i+1}
+\end{align}
+Therefore according to sum of convex function is also convex, we can get the sum of both is convex as well:
+\begin{align}
+\log \sum_{k=1}^{10} exp(x_i\T \beta_k)-x_i\T \beta_{y_i+1}
+\end{align}
+Following the same lemma, the summation term is also convex:
+\begin{align}
+\sum_{i=1}^{m}\left(\log \sum_{k=1}^{10} exp(x_i\T \beta_k)-x_i\T \beta_{y_i+1}\right)
+\end{align}
+In Q4, we have shown the $\ell$1 Regularisation term is convex:
+\begin{align}
+||\beta_k||_1
+\end{align}
+Then by sum of convex function is convex and affine mapping of convex function is convex, we get that the second term of optimisation problem function is convex:
+\begin{align}
+\lambda\sum_{k=1}^{10}||\beta_k||_1
+\end{align}
+Combining the convex first term and convex second term, the whole  optimisation problem is convex:
+\begin{align}
+\sum_{i=1}^{m}\left(\log \sum_{k=1}^{10} exp(x_i\T \beta_k)-x_i\T \beta_{y_i+1}\right) + \lambda\sum_{k=1}^{10}||\beta_k||_1
+\end{align}
 \end{enumerate}
 
+\section{Part 2}
+\subsection{Q.2}
+\begin{enumerate}[1)]
+\item
 
+\item
 
+\item
 
+\item
+
+\item
+
+\item
+
+\item
+
+\end{enumerate}
 
 \end{document}
 %%% Local Variables: 

@@ -1,0 +1,66 @@
+\documentclass[12pt,twoside]{article}
+
+\newcommand{\reporttitle}{477 - Computational Optimisation}
+\newcommand{\reportauthor}{Jiahao Lin}
+\newcommand{\reporttype}{Coursework}
+\newcommand{\cid}{00837321}
+
+% include files that load packages and define macros
+\input{includes} % various packages needed for maths etc.
+\input{notation} % short-hand notation and macros
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+% front page
+\input{titlepage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main document
+\section{Part 1}
+
+
+\subsection{1}
+
+
+\begin{enumerate}[1)]
+\item 
+To prove is $\log \sum_{k=1}^{10} exp(B_{jk})$ is convex, we define:
+\begin{align}
+f(B_j) = \log \sum_{k=1}^{10} exp(B_{jk})\\
+f(x) = \log \sum_{k=1}^{10} exp(x_k)
+\end{align}
+First we need to compute the hessian of $f(x)$:
+\begin{align}
+\nabla f(x) = \frac{1}{1\T Z} \times z\\
+\nabla^2 f(x) = \frac{1}{1\T Z} \times diag(Z) - \frac{Z\T Z}{{1\T Z}^2}\\
+where\quad Z = \sum_{k=1}^{10} exp(x_{k})
+\end{align}
+To prove the hessian is positive semi-definite, we need to prove:
+\begin{align}
+v\T\nabla^2 f(x)v >= 0\\
+v\T\left(\frac{1}{1\T Z} \times diag(Z) - \frac{Z\T Z}{{1\T Z}^2}\right)v >= 0
+\end{align}
+Cauchy-Schwarz inequality
+\item
+
+
+\item
+
+
+\item
+
+
+
+\end{enumerate}
+
+
+
+
+
+\end{document}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

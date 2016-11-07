@@ -1,4 +1,4 @@
-function ReturnVal = SolveMNIST_Gradient(tol, num_iter, step_size, ...
+function [ReturnVal, fcn_val_iter] = SolveMNIST_Gradient(tol, num_iter, step_size, ...
                                          lambda)
 % Build a classifier for recognising hand-written digits from images
 %
@@ -39,8 +39,8 @@ fprintf('\niter=%d; Func Val=%f; FONC Residual=%f',...
 for i = 1:num_iter                        
     
     % Step for gradient descent ------------------------------------------
-    % *** Insert gradient descent code here ***
-    % ***                                   ***
+    beta_guess_next = beta_guess - step_size * beta_grad
+    beta_guess = beta_guess_next
     
     % Update with the new iteration --------------------------------------
     beta_guess_iter(i+1,:) = beta_guess;
@@ -90,5 +90,4 @@ for i = 1:num_iter
 end
 
 ReturnVal = beta_guess;
-
 end

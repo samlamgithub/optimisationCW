@@ -145,7 +145,7 @@ h(B) = \lambda\sum_{k=1}^{10}||\beta_k||_1\\
 Since absolute value is not differentiable because it has a kink at 0, the whole $h(\mathcal{B})$ function is not differentiable. So $h(\mathcal{B}) \not\in \mathcal{C}^1$.
 \item
 To show the new problem is convex, we need to prove that the new regularisation term is convex.
-To prove the $\mathcal{l}$2 regularisation term is convex, we need to show it's Hessian is positive semi-definite,
+To prove the $\ell$2 regularisation term is convex, we need to show it's Hessian is positive semi-definite,
 \begin{align}
 ||\beta_k||_2^2 = \sum_{i=1}^{10}|\beta_{k}|^2\\
 = \sum_{i=1}^{10}\beta_{k}^2\\
@@ -165,13 +165,30 @@ f(B) = \sum_{i=1}^{m}\left(\log \sum_{k=1}^{10} exp(x_i\T \beta_k)-x_i\T \beta_{
 We already now that the first term $g(B)$ is continuously
 differentiable, and then since the new regularisation term is continuously differentiable as well because it doesn't contain the absolute function any more, we can say that the new optimisation problem $f(B) \in \mathcal{C}^1$.
 \item
-
-
+As shown in the code.
+\item
+The first condition at line 60 corresponding to FONC which is First Order Necessary Condition, because FONC states that the gradient have to equal to zero, in practical we take the 2 norm of gradient and make sure it's less than our tolerance value:
+\begin{align}
+||\nabla f(B^{(j)})||_2 < \epsilon
+\end{align}
+The second condition at line 65 corresponding to SONC which is Second Order Necessary Condition:
+\begin{align}
+||B^{(j+1)} - B^{(j)}||_2 < \epsilon
+\end{align}
+The third condition at line 70 corresponding to SOSC which is Second Order Sufficient Condition:
+\begin{align}
+|f(B^{(j+1)}) - f(B^{(j)})| < \epsilon
+\end{align}
 
 \item
-
-\item
-
+\begin{figure}[tb]
+\centering
+\includegraphics[width = 1.0\hsize]{./figures/p2q5}
+\caption{Graph for Q.5 plot of function values verses number of iteration}
+\label{fig:p2q5 fig}
+\end{figure}
+Fig.~\ref{fig:p2q5 fig} Shows the function values verses number of iteration.\\
+iter=4999; Func Val=141.874234; FONC Residual=2.138710; Sqr Diff=0.000214
 \item
 
 \item

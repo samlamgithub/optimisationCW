@@ -156,7 +156,7 @@ where \quad Z_k = 2\beta_k\\
 Because Hessian is a diagonal matrix with all 2s on its diagonal, it's positive definite since its eigenvalues are 2 and positive eigenvalues means positive definite.\\
 Now according to sum of convex function is convex and affine mapping of convex function is convex, we proved the new regularisation term is convex:
 \begin{align}
-\lambda\sum_{k=1}^{10}\sum_{i=1}^{n}|\beta_{k}|_2^2
+\lambda\sum_{k=1}^{10}|\beta_{k}|_2^2
 \end{align}
 From previous question we know the first term $g(B)$ is convex, therefore the whole new optimisation problem is convex.
 \begin{align}
@@ -190,6 +190,14 @@ The third condition at line 70 corresponding to SOSC which is Second Order Suffi
 Fig.~\ref{fig:p2q5 fig} Shows the function values verses number of iteration.\\
 iter=4999; Func Val=141.874234; FONC Residual=2.138710; Sqr Diff=0.000214
 \item
+The iteration of feature matrix $B$ can be written as:
+\begin{align}
+\beta^{j+i} = \beta^j - \alpha_j (\nabla^2 f(\beta^j))^{-1} \nabla f(\beta^j)
+\end{align}
+To find the optimal step size $\alpha_j$ means the minimum fuction value after the step, we define the problem:
+ \begin{align}
+\alpha_j = arg\quad min_{\alpha\geq 0} f(\beta^j - \alpha_ (\nabla^2 f(\beta^j))^{-1} \nabla f(\beta^j))
+\end{align}
 
 \item
 

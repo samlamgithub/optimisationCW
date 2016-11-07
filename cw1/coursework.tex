@@ -144,10 +144,29 @@ h(B) = \lambda\sum_{k=1}^{10}||\beta_k||_1\\
 \end{align}
 Since absolute value is not differentiable because it has a kink at 0, the whole $h(\mathcal{B})$ function is not differentiable. So $h(\mathcal{B}) \not\in \mathcal{C}^1$.
 \item
-
-
-
+To show the new problem is convex, we need to prove that the new regularisation term is convex.
+To prove the $\mathcal{l}$2 regularisation term is convex, we need to show it's Hessian is positive semi-definite,
+\begin{align}
+||\beta_k||_2^2 = \sum_{i=1}^{10}|\beta_{k}|^2\\
+= \sum_{i=1}^{10}\beta_{k}^2\\
+\nabla(||\beta_k||_2^2) = Z\\
+where \quad Z_k = 2\beta_k\\
+\nabla^2(||\beta_k||_2^2) = diag(2)
+\end{align}
+Because Hessian is a diagonal matrix with all 2s on its diagonal, it's positive definite since its eigenvalues are 2 and positive eigenvalues means positive definite.\\
+Now according to sum of convex function is convex and affine mapping of convex function is convex, we proved the new regularisation term is convex:
+\begin{align}
+\lambda\sum_{k=1}^{10}\sum_{i=1}^{n}|\beta_{k}|_2^2
+\end{align}
+From previous question we know the first term $g(B)$ is convex, therefore the whole new optimisation problem is convex.
+\begin{align}
+f(B) = \sum_{i=1}^{m}\left(\log \sum_{k=1}^{10} exp(x_i\T \beta_k)-x_i\T \beta_{y_i+1}\right) + \lambda\sum_{k=1}^{10}||\beta_k||_2^2
+\end{align}
+We already now that the first term $g(B)$ is continuously
+differentiable, and then since the new regularisation term is continuously differentiable as well because it doesn't contain the absolute function any more, we can say that the new optimisation problem $f(B) \in \mathcal{C}^1$.
 \item
+
+
 
 \item
 

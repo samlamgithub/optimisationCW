@@ -167,6 +167,16 @@ differentiable, and then since the new regularisation term is continuously diffe
 \item
 As shown in the code.
 \item
+The optimization function can be expand to second order taylor series approximation:
+\begin{align}
+f(B) \approx f(B_j) + \nabla f(B_j)\T(B-B_j) + \frac{1}{2}(B-B_j)\T\nabla^2 f(B_j)(B-B_j)\\
+\triangleq g(x)
+\end{align}
+For the algorithm to converge, we need $\nabla f(B) = 0$, which can be written as:
+\begin{align}
+0 = \nabla g(x) = \nabla f(B_j) + \nabla^2 f(B_j)(B-B_j
+\end{align}
+For the above equation to happen, one condition is $||\nabla f(B^{(j)})||_2$ to be very small, then the second term of the equation will tend to be 0.
 The first condition at line 60 corresponding to FONC which is First Order Necessary Condition, because FONC states that the gradient have to equal to zero, in practical we take the 2 norm of gradient and make sure it's less than our tolerance value:
 \begin{align}
 ||\nabla f(B^{(j)})||_2 < \epsilon

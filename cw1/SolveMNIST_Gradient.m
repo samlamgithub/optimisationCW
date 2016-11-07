@@ -41,9 +41,11 @@ for i = 1:num_iter
     % Step for gradient descent ------------------------------------------
 %     beta_guess_next = beta_guess - step_size * beta_grad
 %     beta_guess = beta_guess_next
-    stepsize = (beta_guess - beta_guess_iter(i))/(evaluate_gB(beta_guess, X, y, n, m, dim, lambda, 0, norm_type)-evaluate_gB(beta_guess_iter(i), X, y, n, m, dim, lambda, 0, norm_type))
-    beta_guess_next = beta_guess - stepsize * beta_grad
-    beta_guess = beta_guess_next
+
+    thisGradient = evaluate_gB(beta_guess, X, y, n, m, dim, lambda, 0, norm_type)
+    stepsize = inv((thisGradient-evaluate_gB(beta_guess_iter(i,:), X, y, n, m, dim, lambda, 0, norm_type)))* (beta_guess - beta_guess_iter(i,:));
+    beta_guess_next = beta_guess - stepsize * thisGradient;
+    beta_guess = beta_guess_next;
     
     % Update with the new iteration --------------------------------------
     beta_guess_iter(i+1,:) = beta_guess;
@@ -70,19 +72,19 @@ for i = 1:num_iter
     % Check that the objective is changing from iteration to iteration?
     % Stores the absolute value of the difference between the current 
     % function value and the previous one at each iteration
-    diffFsd(i) = abs( fcn_val_iter(i+1)-fcn_val_iter(i)); % <-- Correct this!!
+    diffFsd(i) = abs(fcn_val_iter(i+1)-fcn_val_iter(i)); % <-- Correct this!!
     
     fprintf('\niter=%d; Func Val=%f; FONC Residual=%f; Sqr Diff=%f',...
             i, beta_eval, convgsd(i), lenXsd(i));
     
     % Check the convergence criteria?
-    if (convgsd(i) <= tol)
+    if (convgsd(i) < tol)
         fprintf('\nFirst-Order Optimality Condition met\n');
         break; 
-    elseif (lenXsd(i) <= tol)
+    elseif (lenXsd(i) < tol)
         fprintf('\nExit: Design not changing\n');
         break;
-    elseif (diffFsd(i) <= tol)
+    elseif (diffFsd(i) < tol)
         fprintf('\nExit: Objective not changing\n');
         break;
     elseif (i + 1 >= num_iter)

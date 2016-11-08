@@ -39,14 +39,18 @@ fprintf('\niter=%d; Func Val=%f; FONC Residual=%f',...
 for i = 1:num_iter                        
     
     % Step for gradient descent ------------------------------------------
-%     beta_guess_next = beta_guess - step_size * beta_grad
-%     beta_guess = beta_guess_next
-
-    thisGradient = evaluate_gB(beta_guess, X, y, n, m, dim, lambda, 0, norm_type)
-    stepsize = inv((thisGradient-evaluate_gB(beta_guess_iter(i,:), X, y, n, m, dim, lambda, 0, norm_type)))* (beta_guess - beta_guess_iter(i,:));
-    beta_guess_next = beta_guess - stepsize * thisGradient;
-    beta_guess = beta_guess_next;
-    
+    if i == 1
+        beta_guess_next = beta_guess - step_size * beta_grad;
+        beta_guess = beta_guess_next;
+    else
+        thisGradient = beta_grad;
+        lastGradient = evaluate_gB(beta_guess_iter(i-1,:), X, y, n, m, dim, lambda, 1, norm_type);
+        gradientDelta = thisGradient-lastGradient;
+        betaDelta = beta_guess - beta_guess_iter(i-1,:);
+        stepsize = betaDelta/gradientDelta;
+        beta_guess_next = beta_guess - stepsize * thisGradient;
+        beta_guess = beta_guess_next;
+    end
     % Update with the new iteration --------------------------------------
     beta_guess_iter(i+1,:) = beta_guess;
     

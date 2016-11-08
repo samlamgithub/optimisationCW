@@ -40,7 +40,7 @@ if eval == 0          % Evaluate the function
         end
     end
     
-else                % Evaluate the derivative
+else if eval == 1               % Evaluate the derivative
 
     Y = zeros(m, dim);
     Z = zeros(m, m);   
@@ -68,7 +68,9 @@ else                % Evaluate the derivative
     end
         
     gB = gB_vect;
-    
+else if eval == 2
+       aaa = 1+2
+    end
 end
 end
 

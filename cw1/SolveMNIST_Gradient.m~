@@ -59,22 +59,21 @@ for i = 1:num_iter
 %     
 %     % Backtrack to reject higher function values ------------------
     nextFcnVal = evaluate_gB(beta_guess_next, X, y, n, m, dim, ...
-                                         lambda, 0, norm_type);
-    if nextFcnVal >= beta_eval
-        count = 0;
-        while nextFcnVal >= beta_eval && count < 100
-            step_size = step_size / 2;
-            beta_guess_next = beta_guess + step_size * direction;
-            nextFcnVal = evaluate_gB(beta_guess_next, X, y, n, m, dim, ...
-                                          lambda, 0, norm_type);
-            count = count + 1;
-        end
-    else
-        step_size = 2 * step_size;
-    end
-    
-    beta_guess = beta_guess + step_size * direction;
-    
+%                                          lambda, 0, norm_type);
+%     if nextFcnVal >= beta_eval
+%         count = 0;
+%         while nextFcnVal >= beta_eval && count < 100
+%             step_size = step_size / 2;
+%             beta_guess_next = beta_guess + step_size * direction;
+%             nextFcnVal = evaluate_gB(beta_guess_next, X, y, n, m, dim, ...
+%                                           lambda, 0, norm_type);
+%             count = count + 1;
+%         end
+%     end
+%     else
+%         step_size = 2 * step_size;
+        
+   
     
     % Update with the new iteration --------------------------------------
     beta_guess_iter(i+1,:) = beta_guess;

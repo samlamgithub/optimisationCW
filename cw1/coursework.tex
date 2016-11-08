@@ -167,29 +167,30 @@ differentiable, and then since the new regularisation term is continuously diffe
 \item
 As shown in the code.
 \item
-The optimization function can be expand to second order taylor series approximation:
+The optimization function can be expand to first order taylor series approximation:
 \begin{align}
-f(B) \approx f(B_j) + \nabla f(B_j)\T(B-B_j) + \frac{1}{2}(B-B_j)\T\nabla^2 f(B_j)(B-B_j)\\
-\triangleq g(x)
+f(B) \approx f(B_j) + \nabla f(B_j)\T(B-B_j)
 \end{align}
-For the algorithm to converge, we need $\nabla f(B) = 0$, which can be written as:
-\begin{align}
-0 = \nabla g(x) = \nabla f(B_j) + \nabla^2 f(B_j)(B-B_j)
-\end{align}
-For the above equation to happen, one condition is $||\nabla f(B^{(j)})||_2$ to be very small, then the second term of the equation will tend to be 0.
-The first condition at line 60 corresponding to this, where the 2 norm of gradient is less than our tolerance value:
-\begin{align}
-||\nabla f(B^{(j)})||_2 < \epsilon
-\end{align}
-The second condition at line 65 corresponding to the value of $||B^{(j+1)} - B^{(j)}||_2$ tend to be zero:
-\begin{align}
-||B^{(j+1)} - B^{(j)}||_2 < \epsilon
-\end{align}
-The third condition at line 70 corresponding to the situation that the first term tend to be zero, which means:
+For the algorithm to converge, we need $\delta f(B)$ tend to be zero, which can be written as:
 \begin{align}
 |f(B^{(j+1)}) - f(B^{(j)})| < \epsilon
 \end{align}
-
+On the other hand, if the second term tend to be zero, the condition will be met as well:
+\begin{align}
+\nabla f(B_j)\T(B-B_j) = 0
+\end{align}
+This is corresponding to the FONC (First Order Necessary Condition):
+\begin{align}
+\nabla f(B_j)\T d_j \leq 0
+\end{align}
+To satisfy the above condition, the norm of the gradient could tend to zero as well:
+\begin{align}
+||\nabla f(B^{(j)})||_2 < \epsilon
+\end{align}
+Or the change for $B$ could also tend to zero to satisfy the converge condition:
+\begin{align}
+||B^{(j+1)} - B^{(j)}||_2 < \epsilon
+\end{align}
 \item
 \begin{figure}[tb]
 \centering
@@ -226,7 +227,11 @@ tor: 0.000000001   iter=509; Func Val=141.231572; FONC Residual=0.002710; Sqr Di
 \label{fig:secantAndBacktrack fig}
 \end{figure}
 Fig.~\ref{fig:secantAndBacktrack fig} Show the fast converage with secant method and backtracking, torlerance set to 1e-8.\\
-iter=4999; Func Val=141.234729; FONC Residual=0.145495; Sqr Diff=0.000007
+iter=4999; Func Val=141.234729; FONC Residual=0.145495; Sqr Diff=0.000007\\
+
+(0.000000001, 100000, 0.0001, 1)
+iter=8931; Func Val=141.231578; FONC Residual=0.017225; Sqr Diff=0.000004
+Exit: Objective not changing
 \end{enumerate}
 
 \end{document}

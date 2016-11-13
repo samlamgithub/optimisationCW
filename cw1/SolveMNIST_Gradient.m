@@ -48,19 +48,19 @@ for i = 1:num_iter
         gradientDelta = thisGradient-lastGradient;
         betaDelta = beta_guess - beta_guess_iter(i-1,:);
         d = betaDelta/gradientDelta;
-        direction = - step_size * d * thisGradient;
+        direction = -  d * thisGradient;
 %         beta_guess = beta_guess_next;
 
 %         direction = -thisGradient * (betaDelta/gradientDelta);
     end
     
     % Got direction, calculate step size
-     beta_guess_next = beta_guess + step_size * direction;
+    beta_guess_next = beta_guess + step_size * direction;
 %     
 %     % Backtrack to reject higher function values ------------------
     nextFcnVal = evaluate_gB(beta_guess_next, X, y, n, m, dim, ...
                                          lambda, 0, norm_type);
-    if nextFcnVal >= beta_eval
+    if nextFcnVal >= fcn_val_iter(i)
         count = 0;
         while nextFcnVal >= beta_eval && count < 100
             step_size = step_size / 2;
@@ -69,8 +69,6 @@ for i = 1:num_iter
                                           lambda, 0, norm_type);
             count = count + 1;
         end
-    else
-        step_size = 2 * step_size;
     end
     
     beta_guess = beta_guess + step_size * direction;
@@ -81,7 +79,10 @@ for i = 1:num_iter
     
     beta_eval              = evaluate_gB(beta_guess, X, y, n, m, dim, ...
                                          lambda, 0, norm_type);
-                                     
+    if beta_eval >= fcn_val_iter(i)
+            fprintf('%d',beta_eval-fcn_val_iter(i))       
+    end   
+    step_size = 2 * step_size;
     fcn_val_iter(i+1)      = beta_eval;
     
     beta_grad              = evaluate_gB(beta_guess, X, y, n, m, dim, ...

@@ -69,17 +69,42 @@ f(x_{k+1}) = f(x_k + t_k \vec{\Delta}x_k)
 \end{align}
 Now use Taylor expansion to expand the above function into second order:
 \begin{align}
-f(x_k + t_k \vec{\Delta}x_k) \approx f(x_k) + t_k<\nabla f(x_k), \vec{\Delta}x_k)> + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2\\
+f(x_k + t_k \vec{\Delta}x_k) \approx f(x_k) + t_k\left\langle\nabla f(x_k), \vec{\Delta}x_k\right\rangle + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2\\
 \vec{\Delta}x_k = - \frac{\nabla f(x_k)}{\nabla^2 f(x_k)}\\
-<\nabla f(x_k), \vec{\Delta}x_k> = - \frac{||\nabla f(x_k)||_2^2}{\nabla^2 f(x_k)}
+\left\langle\nabla f(x_k), \vec{\Delta}x_k\right\rangle = - \frac{||\nabla f(x_k)||_2^2}{\nabla^2 f(x_k)}
 \end{align}
 We need to show that:
 \begin{align}
-f(x_k) + t_k<\nabla f(x_k), \vec{\Delta}x_k)> + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq f(x_k) + \alpha t_k <\nabla f(x_k), \vec{\Delta}x_k)>\\
-t_k<\nabla f(x_k), \vec{\Delta}x_k)> + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq   \alpha t_k <\nabla f(x_k), \vec{\Delta}x_k)>\\
+f(x_k) + t_k\langle \nabla f(x_k), \vec{\Delta}x_k\rangle + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq f(x_k) + \alpha t_k \langle\nabla f(x_k), \vec{\Delta}x_k)\rangle\\
+t_k\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq   \alpha t_k \langle\nabla f(x_k), \vec{\Delta}x_k)\rangle
 \end{align}
-
-
+Now let's look at first term fisrt:
+\begin{align}
+t_k\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle
+\end{align}
+Since we have the condition on $t_k$:
+\begin{align}
+t \leq - \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\vec{M} ||\nabla x_k||_2^2}\\
+0 > {\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}t_k > -{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}\T \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\vec{M} ||\nabla x_k||_2^2}\\
+0 > {\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}t_k > -\frac{||\nabla f(x_k)||^2 ||\vec{\Delta}x_k)||^2}{\vec{M} ||\nabla x_k||_2^2}\\
+0 > {\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}t_k > -\frac{||\nabla f(x_k)||^2}{\vec{M}}
+\end{align}
+Now let's take a look at second term:
+\begin{align}
+\frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2
+\end{align}
+Again substitute in condition for $t$:
+\begin{align}
+t \leq - \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\vec{M} ||\nabla x_k||_2^2}\\
+||t||_2^2 \leq \frac{||\nabla f(x_k)||^2 ||\vec{\Delta}x_k)||^2}{\vec{M}\T \vec{M} ||\nabla x_k||_2^4}\\
+||t||_2^2 \leq \frac{||\nabla f(x_k)||^2}{\vec{M}\T \vec{M} ||\nabla x_k||_2^2}\\
+||t||_2^2 ||\vec{\Delta}x_k||_2^2 \leq \frac{||\nabla f(x_k)||^2}{\vec{M}\T \vec{M}}\\
+\end{align}
+Since we have the upper bound for $\nabla^2 f(x_k)$:
+\begin{align}
+\nabla^2 f(x_k) \preceq \vec{MI}\\
+||t||_2^2 ||\vec{\Delta}x_k||_2^2 \nabla^2 f(x_k) \leq \frac{\nabla^2 f(x_k) ||\nabla f(x_k)||^2}{\vec{M}\T \vec{M}}\\
+\end{align}
 
 
 
@@ -90,8 +115,107 @@ t_k<\nabla f(x_k), \vec{\Delta}x_k)> + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\v
 \subsection{Q.2}
 \begin{enumerate}[a)]
 \item
+KKT conditions:
+\begin{align}
+min \quad z_1^2 + (x_2 + 1)^2\\
+g(x^*) = exp(x_1^*) - x_2^* \leq 0\\
+\mu^* \geq 0\\
+2x_1^* + \mu^* exp(x_1^*) = 0\\
+2(x_2^* + 1) + \mu^* * (-1) = 0\\
+\mu^* (exp(x_1^*) - x_2^*) = 0
+\end{align}
+if $\mu^* = 0$ :
+\begin{align}
+2 x_1^* = 0\\
+x_1^* = 0\\
+2(x_2^* + 1) = 0\\
+x_2^* = -1\\
+g(x^*) = exp(0) - (-1) = 2 > 0\\
+\end{align}
+This is contradicting our condition, so $\mu^* > 0$ :
+\begin{align}
+exp(x_1^*) - x_2^* = 0\\
+exp(x_1^*) =  x_2^*\\
+2(x_2^* + 1) + \mu^* (-1) = 0\\
+2(exp(x_1^*) + 1) = \mu^*\\
+2x_1^* + \mu^* * exp(x_1^*) = 0\\
+2x_1^* + 2(exp(x_1^*) + 1) * exp(x_1^*) = 0
+\end{align}
+Since $exp(x_1^*) > 0$:
+\begin{align}
+2(exp(x_1^*) + 1) * exp(x_1^*) > 0\\
+\end{align}
+combine with
+\begin{align}
+2x_1^* + 2(exp(x_1^*) + 1) * exp(x_1^*) = 0
+\end{align}
+we got
+\begin{align}
+2x_1^* < 0\\
+x_1^* < 0\\
+0 < exp(x_1^*) < 1\\
+1 < exp(x_1^*) + 1 < 2\\
+0 < (exp(x_1^*) + 1) * exp(x_1^*) < 2\\
+\end{align}                                               
+combine with the above equation agian:
+\begin{align}
+x_1^* + (exp(x_1^*) + 1) * exp(x_1^*) = 0\\
+-1 < x_1^* < 0
+\end{align}
+
+
 \item 
+KKT condition:
+\begin{align}
+min \quad c\T x + 8\\
+g(x^*) = \frac{1}{2} ||x^*||^2 -1 \leq 0\\
+\mu^* \geq 0\\
+c + \mu^* x^* = 0\\
+\mu^* (\frac{1}{2} ||x^*||^2 -1) = 0
+\end{align}
+We can see that if $\mu^* = 0$, $c=0$ as well, which contradicts our given condition $c \neq 0$, so we get $\mu^* > 0$
+\begin{align}
+\frac{1}{2} ||x^*||^2 -1 = 0\\
+||x^*||^2 = 2\\
+||a \vec{1}||^2 = 2\\
+n|a|^2 = 2\\
+a = \pm \sqrt{\frac{2}{n}}\\
+c\T x + 8 = 4\\
+c\T x = -4\\
+n(\vec{c} a) = -4\\
+\vec{c} = \frac{-4}{an}\\
+c = \mp \frac{4}{\sqrt{2n}}
+\end{align}
+Please noted that here c and a have inverse signs.
+
 \item 
+KKT Condition For original problem:
+\begin{align}
+min \quad f(x)\\
+h(x^*) = 0\\
+\nabla f(x^*) + \lambda^* \nabla h(x^*) = 0
+\end{align}
+KKT Condition For In-Eq problem:
+\begin{align}
+g(x^*) = \frac{1}{2}||h(x^*)||^2 \leq 0\\
+\mu^* \geq 0\\
+\nabla f(x^*) + \mu^* h(x^*) = 0\\
+\frac{1}{2} \mu^* ||h(x^*)||^2 = 0
+\end{align}
+If $\mu^* = 0$:
+\begin{align}
+\nabla f(x^*) = 0
+h(x^*) may not be 0
+\end{align}
+So $\mu^* > 0$:
+\begin{align}
+||h(x^*)||^2 = 0
+\nabla g(x^*) = ||h(x^*)|| = 0
+h(x^*) = 0
+\end{align}
+So $h(x^*)$ is not linearly independent, and $x^*$ is not a regular point, so KKT theorem can not be applied on In-Eq problem.
+
+
 \end{enumerate}
 
 \end{document}

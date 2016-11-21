@@ -1,0 +1,101 @@
+\documentclass[12pt,twoside]{article}
+
+\newcommand{\reporttitle}{477 - Computational Optimisation}
+\newcommand{\reportauthor}{Jiahao Lin}
+\newcommand{\reporttype}{Coursework 2}
+\newcommand{\cid}{00837321}
+
+% include files that load packages and define macros
+\input{includes} % various packages needed for maths etc.
+\input{notation} % short-hand notation and macros
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+% front page
+\input{titlepage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main document
+\section{Part 1}
+
+
+\subsection{Q.1}
+
+
+\begin{enumerate}[a)]
+\item
+To show that $\vec{\Delta} x_k$ is descent direction at $x_k$, we need to show that:
+\begin{align}
+\nabla f(x_k)\T \vec{\Delta} x_k < 0 \\
+\end{align}
+Since:
+\begin{align}
+\nabla^2 f(x_k) \vec{\Delta} x_k = - \nabla f(x_k)\\
+\end{align}
+We can get:
+\begin{align}
+\nabla f(x_k)\T \vec{\Delta} x_k = - \nabla f(x_k)\T  \frac{\nabla f(x_k)}{\nabla^2 f(x_k)}\\
+= - \frac{\nabla f(x_k)\T \nabla f(x_k)}{\nabla^2 f(x_k)}
+\end{align}
+We can see that this is less than zero since the numerator is positive definite and the same for denominator:
+\begin{align}
+\nabla^2 f(x_k) \succeq m\vec{I}
+\end{align}
+
+
+
+\item
+We can set tolerane to $e^{-08}$ and say that:
+\begin{align}
+|f(x_{k+1}) - f(x_k)| < tor\\
+||\nabla f(x_k)||_2 < tor\\
+||x_{k+1} - x_k||_2 < tor
+\end{align}
+This is to check that the First Order Necessary Condition is satisfied.
+
+\item
+Yes, since the function is strongly convex, but the condition is that the initial point $x_0$ has to be close enough to the optimal point.
+
+\item 
+First say that:
+\begin{align}
+x_{k+1} = x_k + t_k \vec{\Delta}x_k
+\end{align}
+Then 
+\begin{align}
+f(x_{k+1}) = f(x_k + t_k \vec{\Delta}x_k)
+\end{align}
+Now use Taylor expansion to expand the above function into second order:
+\begin{align}
+f(x_k + t_k \vec{\Delta}x_k) \approx f(x_k) + t_k<\nabla f(x_k), \vec{\Delta}x_k)> + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2\\
+\vec{\Delta}x_k = - \frac{\nabla f(x_k)}{\nabla^2 f(x_k)}\\
+<\nabla f(x_k), \vec{\Delta}x_k> = - \frac{||\nabla f(x_k)||_2^2}{\nabla^2 f(x_k)}
+\end{align}
+We need to show that:
+\begin{align}
+f(x_k) + t_k<\nabla f(x_k), \vec{\Delta}x_k)> + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq f(x_k) + \alpha t_k <\nabla f(x_k), \vec{\Delta}x_k)>\\
+t_k<\nabla f(x_k), \vec{\Delta}x_k)> + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq   \alpha t_k <\nabla f(x_k), \vec{\Delta}x_k)>\\
+\end{align}
+
+
+
+
+
+\item 
+\end{enumerate}
+
+\section{Part 2}
+\subsection{Q.2}
+\begin{enumerate}[a)]
+\item
+\item 
+\item 
+\end{enumerate}
+
+\end{document}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

@@ -76,18 +76,48 @@ f(x_k + t_k \vec{\Delta}x_k) \approx f(x_k) + t_k\left\langle\nabla f(x_k), \vec
 We need to show that:
 \begin{align}
 f(x_k) + t_k\langle \nabla f(x_k), \vec{\Delta}x_k\rangle + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq f(x_k) + \alpha t_k \langle\nabla f(x_k), \vec{\Delta}x_k)\rangle\\
-t_k\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq   \alpha t_k \langle\nabla f(x_k), \vec{\Delta}x_k)\rangle
+t_k\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq   \alpha t_k \langle\nabla f(x_k), \vec{\Delta}x_k)\rangle\\
+\frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq   (\alpha - 1) t_k \langle\nabla f(x_k), \vec{\Delta}x_k)\rangle\\
+\frac{1}{2}\nabla^2 f(x_k)t_k||\vec{\Delta}x_k||_2^2 \leq   (\alpha - 1)\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle
 \end{align}
-Now let's look at first term fisrt:
+Since we have condition on $\alpha$:
+\begin{align}
+0 < \alpha < 0.5\\
+-1 < \alpha - 1 < -0.5
+\end{align}
+Since $\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle < 0$:
+\begin{align}
+-\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle \geq (\alpha - 1)\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle \geq -0.5\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle
+\end{align}
+So we need to show that:
+\begin{align}
+\frac{1}{2}\nabla^2 f(x_k)t_k||\vec{\Delta}x_k||_2^2 \leq   -0.5\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle\\
+\nabla^2 f(x_k)t_k||\vec{\Delta}x_k||_2^2 \leq - \langle\nabla f(x_k), \vec{\Delta}x_k)\rangle\\
+t_k \leq - \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\nabla^2 f(x_k)||\vec{\Delta}x_k||_2^2}
+\end{align}
+Since we have condition on $\nabla^2 f(x_k)$:
+\begin{align}
+\vec{mI} <  \nabla^2 f(x_k) \preceq \vec{MI}\\
+\frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\nabla^2 f(x_k)||\vec{\Delta}x_k||_2^2} \geq \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\vec{M}||\vec{\Delta}x_k||_2^2}\\
+- \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\nabla^2 f(x_k)||\vec{\Delta}x_k||_2^2} \leq - \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\vec{M}||\vec{\Delta}x_k||_2^2}\\
+\end{align}
+We got:
+\begin{align}
+t_k \leq - \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{M||\vec{\Delta}x_k||_2^2}
+\end{align}
+Which is the given condition on $t_k$\\
+End ---
+
+
 \begin{align}
 t_k\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle
 \end{align}
 Since we have the condition on $t_k$:
 \begin{align}
-t \leq - \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\vec{M} ||\nabla x_k||_2^2}\\
-0 > {\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}t_k > -{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}\T \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\vec{M} ||\nabla x_k||_2^2}\\
-0 > {\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}t_k > -\frac{||\nabla f(x_k)||^2 ||\vec{\Delta}x_k)||^2}{\vec{M} ||\nabla x_k||_2^2}\\
-0 > {\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}t_k > -\frac{||\nabla f(x_k)||^2}{\vec{M}}
+0 < t \leq - \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\vec{M} ||\vec{\Delta} x_k||_2^2}\\
+0 \geq {\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}t_k > -{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}\T \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\vec{M} ||\vec{\Delta} x_k||_2^2}\\
+0 \geq {\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}t_k > -\frac{||\nabla f(x_k)||^2 ||\vec{\Delta}x_k)||^2}{\vec{M} ||\vec{\Delta} x_k||_2^2}\\
+0 \geq {\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}t_k > -\frac{||\nabla f(x_k)||^2}{\vec{M}}
 \end{align}
 Now let's take a look at second term:
 \begin{align}
@@ -95,20 +125,47 @@ Now let's take a look at second term:
 \end{align}
 Again substitute in condition for $t$:
 \begin{align}
-t \leq - \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\vec{M} ||\nabla x_k||_2^2}\\
-||t||_2^2 \leq \frac{||\nabla f(x_k)||^2 ||\vec{\Delta}x_k)||^2}{\vec{M}\T \vec{M} ||\nabla x_k||_2^4}\\
-||t||_2^2 \leq \frac{||\nabla f(x_k)||^2}{\vec{M}\T \vec{M} ||\nabla x_k||_2^2}\\
-||t||_2^2 ||\vec{\Delta}x_k||_2^2 \leq \frac{||\nabla f(x_k)||^2}{\vec{M}\T \vec{M}}\\
+0 < t \leq - \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\vec{M} ||\vec{\Delta} x_k||_2^2}\\
+0 < ||t||_2^2 \leq \frac{||\nabla f(x_k)||^2 ||\vec{\Delta}x_k)||^2}{\vec{M}\T \vec{M} ||\vec{\Delta} x_k||_2^4}\\
+0 <  ||t||_2^2 \leq \frac{||\nabla f(x_k)||^2}{\vec{M}\T \vec{M} ||\vec{\Delta} x_k||_2^2}\\
+0 <  ||t||_2^2 ||\vec{\Delta}x_k||_2^2 \leq \frac{||\nabla f(x_k)||^2}{\vec{M}\T \vec{M}}\\
 \end{align}
 Since we have the upper bound for $\nabla^2 f(x_k)$:
 \begin{align}
-\nabla^2 f(x_k) \preceq \vec{MI}\\
-||t||_2^2 ||\vec{\Delta}x_k||_2^2 \nabla^2 f(x_k) \leq \frac{\nabla^2 f(x_k) ||\nabla f(x_k)||^2}{\vec{M}\T \vec{M}}\\
+\vec{mI} <  \nabla^2 f(x_k) \preceq \vec{MI}\\
+0 <  ||t||_2^2 ||\vec{\Delta}x_k||_2^2 \nabla^2 f(x_k) \leq \frac{\nabla^2 f(x_k) ||\nabla f(x_k)||^2}{\vec{M}\T \vec{M}}\\
+0 < ||t||_2^2 ||\vec{\Delta}x_k||_2^2 \nabla^2 f(x_k) \leq \frac{||\nabla f(x_k)||^2}{\vec{M}}\\
+0 < \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq \frac{1}{2} \frac{||\nabla f(x_k)||^2}{\vec{M}}
+\end{align}
+Now combine first and second term:
+\begin{align}
+0 \geq {\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}t_k > -\frac{||\nabla f(x_k)||^2}{\vec{M}}\\
+0 < \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq \frac{1}{2} \frac{||\nabla f(x_k)||^2}{\vec{M}}\\
+-\frac{||\nabla f(x_k)||^2}{\vec{M}} < t_k\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq \frac{1}{2} \frac{||\nabla f(x_k)||^2}{\vec{M}}
+\end{align}
+From condition on $\alpha$:
+\begin{align}
+0 < \alpha < 0.5\\
+\vec{mI} <  \nabla^2 f(x_k) \preceq \vec{MI}\\
+- \frac{||\nabla f(x_k)||^2}{\nabla^2 f(x_k)} \leq - \frac{||\nabla f(x_k)||^2}{\vec{M}}\\
+\frac{1}{2} \frac{||\nabla f(x_k)||^2}{\nabla^2 f(x_k)} \geq \frac{1}{2} \frac{||\nabla f(x_k)||^2}{\vec{M}}\\
+- \frac{||\nabla f(x_k)||^2}{\nabla^2 f(x_k)} < t_k\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq \frac{1}{2} \frac{||\nabla f(x_k)||^2}{\nabla^2 f(x_k)}\\
+0 < \alpha \frac{||\nabla f(x_k)||^2}{\nabla^2 f(x_k)} < \frac{1}{2} \frac{||\nabla f(x_k)||^2}{\nabla^2 f(x_k)}\\
 \end{align}
 
 
 
-\item 
+\item
+Assume $t_0 = 1$, maximum number of backtracking step is max $n$ that:
+\begin{align}
+1 * \beta^n \leq - \frac{\langle\nabla f(x_n), \vec{\Delta}x_n)\rangle}{M||\vec{\Delta}x_n||_2^2}\\
+\beta^n \leq - \frac{\langle\nabla f(x_n), \vec{\Delta}x_n)\rangle}{M||\vec{\Delta}x_n||_2^2}\\
+\end{align}
+
+
+
+
+
 \end{enumerate}
 
 \section{Part 2}

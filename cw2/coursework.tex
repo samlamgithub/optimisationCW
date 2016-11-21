@@ -47,7 +47,7 @@ We can see that this is less than zero since the numerator is positive definite 
 
 
 \item
-We can set tolerane to $e^{-08}$ and say that:
+We can set tolerane to $1.0e^{-08}$ and say that:
 \begin{align}
 |f(x_{k+1}) - f(x_k)| < tor\\
 ||\nabla f(x_k)||_2 < tor\\
@@ -106,62 +106,15 @@ We got:
 t_k \leq - \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{M||\vec{\Delta}x_k||_2^2}
 \end{align}
 Which is the given condition on $t_k$\\
-End ---
-
-
-\begin{align}
-t_k\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle
-\end{align}
-Since we have the condition on $t_k$:
-\begin{align}
-0 < t \leq - \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\vec{M} ||\vec{\Delta} x_k||_2^2}\\
-0 \geq {\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}t_k > -{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}\T \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\vec{M} ||\vec{\Delta} x_k||_2^2}\\
-0 \geq {\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}t_k > -\frac{||\nabla f(x_k)||^2 ||\vec{\Delta}x_k)||^2}{\vec{M} ||\vec{\Delta} x_k||_2^2}\\
-0 \geq {\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}t_k > -\frac{||\nabla f(x_k)||^2}{\vec{M}}
-\end{align}
-Now let's take a look at second term:
-\begin{align}
-\frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2
-\end{align}
-Again substitute in condition for $t$:
-\begin{align}
-0 < t \leq - \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{\vec{M} ||\vec{\Delta} x_k||_2^2}\\
-0 < ||t||_2^2 \leq \frac{||\nabla f(x_k)||^2 ||\vec{\Delta}x_k)||^2}{\vec{M}\T \vec{M} ||\vec{\Delta} x_k||_2^4}\\
-0 <  ||t||_2^2 \leq \frac{||\nabla f(x_k)||^2}{\vec{M}\T \vec{M} ||\vec{\Delta} x_k||_2^2}\\
-0 <  ||t||_2^2 ||\vec{\Delta}x_k||_2^2 \leq \frac{||\nabla f(x_k)||^2}{\vec{M}\T \vec{M}}\\
-\end{align}
-Since we have the upper bound for $\nabla^2 f(x_k)$:
-\begin{align}
-\vec{mI} <  \nabla^2 f(x_k) \preceq \vec{MI}\\
-0 <  ||t||_2^2 ||\vec{\Delta}x_k||_2^2 \nabla^2 f(x_k) \leq \frac{\nabla^2 f(x_k) ||\nabla f(x_k)||^2}{\vec{M}\T \vec{M}}\\
-0 < ||t||_2^2 ||\vec{\Delta}x_k||_2^2 \nabla^2 f(x_k) \leq \frac{||\nabla f(x_k)||^2}{\vec{M}}\\
-0 < \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq \frac{1}{2} \frac{||\nabla f(x_k)||^2}{\vec{M}}
-\end{align}
-Now combine first and second term:
-\begin{align}
-0 \geq {\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}t_k > -\frac{||\nabla f(x_k)||^2}{\vec{M}}\\
-0 < \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq \frac{1}{2} \frac{||\nabla f(x_k)||^2}{\vec{M}}\\
--\frac{||\nabla f(x_k)||^2}{\vec{M}} < t_k\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq \frac{1}{2} \frac{||\nabla f(x_k)||^2}{\vec{M}}
-\end{align}
-From condition on $\alpha$:
-\begin{align}
-0 < \alpha < 0.5\\
-\vec{mI} <  \nabla^2 f(x_k) \preceq \vec{MI}\\
-- \frac{||\nabla f(x_k)||^2}{\nabla^2 f(x_k)} \leq - \frac{||\nabla f(x_k)||^2}{\vec{M}}\\
-\frac{1}{2} \frac{||\nabla f(x_k)||^2}{\nabla^2 f(x_k)} \geq \frac{1}{2} \frac{||\nabla f(x_k)||^2}{\vec{M}}\\
-- \frac{||\nabla f(x_k)||^2}{\nabla^2 f(x_k)} < t_k\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle + \frac{1}{2}\nabla^2 f(x_k)||t_k||_2^2||\vec{\Delta}x_k||_2^2 \leq \frac{1}{2} \frac{||\nabla f(x_k)||^2}{\nabla^2 f(x_k)}\\
-0 < \alpha \frac{||\nabla f(x_k)||^2}{\nabla^2 f(x_k)} < \frac{1}{2} \frac{||\nabla f(x_k)||^2}{\nabla^2 f(x_k)}\\
-\end{align}
-
-
 
 \item
 Assume $t_0 = 1$, maximum number of backtracking step is max $n$ that:
 \begin{align}
 1 * \beta^n \leq - \frac{\langle\nabla f(x_n), \vec{\Delta}x_n)\rangle}{M||\vec{\Delta}x_n||_2^2}\\
 \beta^n \leq - \frac{\langle\nabla f(x_n), \vec{\Delta}x_n)\rangle}{M||\vec{\Delta}x_n||_2^2}\\
+n \leq \log_\beta - \frac{\langle\nabla f(x_n), \vec{\Delta}x_n)\rangle}{M||\vec{\Delta}x_n||_2^2}
 \end{align}
-
+Maximum n satisfy the above condition is upper bound for iteration of backtracking steps.
 
 
 
@@ -261,13 +214,13 @@ g(x^*) = \frac{1}{2}||h(x^*)||^2 \leq 0\\
 \end{align}
 If $\mu^* = 0$:
 \begin{align}
-\nabla f(x^*) = 0
+\nabla f(x^*) = 0\\
 h(x^*) may not be 0
 \end{align}
 So $\mu^* > 0$:
 \begin{align}
-||h(x^*)||^2 = 0
-\nabla g(x^*) = ||h(x^*)|| = 0
+||h(x^*)||^2 = 0\\
+\nabla g(x^*) = ||h(x^*)|| = 0\\
 h(x^*) = 0
 \end{align}
 So $h(x^*)$ is not linearly independent, and $x^*$ is not a regular point, so KKT theorem can not be applied on In-Eq problem.

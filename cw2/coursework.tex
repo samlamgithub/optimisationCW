@@ -112,17 +112,30 @@ t_k \leq - \frac{\langle\nabla f(x_k), \vec{\Delta}x_k)\rangle}{M||\vec{\Delta}x
 Since $t_k$ is positive, so we know the final equation we shown is true.\\
 
 \item
-Assume $t_0 = 1$, maximum number of backtracking step is max $n$ that:
+Assume $t_0$ is the initial step size, according to the condition given for Hessian of $f(x_k)$
 \begin{align}
-1 * \beta^n \leq - \frac{\langle\nabla f(x_n), \vec{\Delta}x_n)\rangle}{M||\vec{\Delta}x_n||_2^2}\\
-\beta^n \leq - \frac{\langle\nabla f(x_n), \vec{\Delta}x_n)\rangle}{M||\vec{\Delta}x_n||_2^2}\\
-n \leq \log_\beta - \frac{\langle\nabla f(x_n), \vec{\Delta}x_n)\rangle}{M||\vec{\Delta}x_n||_2^2}
+\vec{mI} \preceq   \nabla^2 f(x_k) \preceq \vec{MI}\\
 \end{align}
-Maximum n satisfy the above condition is upper bound for iteration of backtracking steps.
-
-
-
-
+We can deduce:
+\begin{align}
+\vec{mI} \preceq   \nabla^2 f(x_k) \preceq \vec{MI}\\
+\vec{mI} \preceq  \frac{\nabla f(x_k) }{x_k} \preceq \vec{MI}\\
+\vec{m} \leq  \frac{\left\langle\nabla f(x_k),  x_k\right\rangle }{||x_k||^2} \leq \vec{M}\\
+\frac{\vec{m} }{\vec{M}} \leq  \frac{\left\langle\nabla f(x_k),  x_k\right\rangle }{\vec{M}||x_k||^2} \leq 1\\
+\frac{\vec{m} }{\vec{M}} \geq  - \frac{\left\langle\nabla f(x_k),  x_k\right\rangle }{\vec{M}||x_k||^2} \geq 1\\
+\end{align}
+According to the upper bound for $t_k$ when backtracking stop, we got that when
+\begin{align}
+t_k \leq \frac{\vec{m} }{\vec{M}}
+\end{align}
+backtracking stops, which is equivalent to
+\begin{align}
+\beta^n t_0 \leq \frac{\vec{m} }{\vec{M}}
+\end{align}
+which the $n_0$ is maximum number of iteration for backtracking, and it could be expressed as:
+\begin{align}
+n_0 = min \quad n \quad st. \quad n \leq \log_\beta \frac{\vec{m}}{\vec{M}t_0} &= \log_\beta \vec{m} - \log_\beta \vec{M} - \log_\beta t_0
+\end{align}
 \end{enumerate}
 
 \section{Part 2}
